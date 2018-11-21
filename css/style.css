@@ -1,0 +1,52 @@
+/*all styles*/
+.card-header {
+    text-align: center;
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+/*page Sing Up*/
+
+.registration-form {
+    margin: 10% auto 0;
+    max-width: 50rem;
+    display: none;
+}
+
+/*page Companies*/
+
+.companies .card {
+    height: 35vh;
+    margin: 3vh 0;
+}
+
+
+/*card total Companies*/
+
+.total {
+    margin: 0 auto;
+    width: 20vh;
+    height: 20vh;
+    text-align: center;
+    line-height: 20vh;
+    font-size: 25px;
+    border: 2px solid #212529;
+    border-radius: 50%;
+}
+
+/*card List of Companies*/
+
+.card-list-of-companies .card-body {
+    overflow-y: auto;
+}
+
+/*card Companies by Location*/
+
+.card-list-of-companies {
+    width: auto;
+    height: 20vh;
+}
+
+.card-chart-company-partners {
+    display:none;
+}
