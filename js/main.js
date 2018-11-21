@@ -76,17 +76,25 @@ function drawChart() {
 
 function generateColumnChart(data) {
     let options = {
-        legend: { position: "none" },
+        legend: { position: 'none' },
     };
     let chart = new google.visualization.ColumnChart(document.getElementById('columnCharts'));
     chart.draw(google.visualization.arrayToDataTable(data), options);
 }
 
+function removeSpinner(selector) {
+    $(selector).find('.spinner').remove();
+}
+
 function getDataCompains() {
 
     $.get('http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList', function(data) {
-        let list = $('.card-list-of-companies ul');
         let total = 0;
+
+        // List of Companies
+        removeSpinner('.card-list-of-companies');
+        let list = $('.card-list-of-companies .card-body')
+            .append('<ul class="list-group"></ul>');
         data.list.forEach(function (el) {
             list.append('<li class="list-group-item">' + el.name + '</li>');
 
@@ -115,11 +123,11 @@ function getDataCompains() {
             $('.card-chart-company-partners').show();
         });
 
+        // Total
+        removeSpinner('.card-total-companies');
+        $('.card-total-companies .card-body').append('<div class="total">' + total + '</div>');
         $('.card .total').html(total);
     });
 }
 
 getDataCompains();
-// column chart
-
-
