@@ -1,5 +1,9 @@
 "use strict";
 
+$('#registration-form').on('submit', function (e) {
+    e.preventDefault();
+});
+
 $('#registration-form').validate({
     rules: {
         name: {
@@ -11,26 +15,39 @@ $('#registration-form').validate({
         },
         pass: {
             required: true,
+        },
+        agree: 'required'
+    },
+    highlight: function(element) {
+        $(element).addClass('is-invalid');
+    },
+    unhighlight: function(element) {
+        $(element).removeClass('is-invalid');
+    },
+    errorElement: 'div',
+    errorClass: 'invalid-feedback',
+    errorPlacement: function(error, element) {
+        if(element.parent('.input-group, .form-check').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
         }
+    },
+    submitHandler: function(form) {
+        $.post('http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration',
+            $(form).serialize(), function( data ) {
+            if (data.status === 'OK') {
+                $('.container.registration').hide();
+                $('.container.companies').show();
+                getDataCompains();
+            } else {
+                alert('Attention!'+ ' ' + data.message);
+            }
+        });
+
+        return false;
     }
 });
-
-$('#registration-form').on('submit', function (e) {
-    let form = $(this);
-    $.post('http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration', form.serialize(), function( data ) {
-        console.log(data.status);
-        if (data.status === 'OK') {
-            $('.container.registration').hide();
-            $('.container.companies').show();
-            getDataCompains();
-        } else {
-            alert('Attention!'+ ' ' + data.message);
-        }
-
-    });
-    e.preventDefault();
-});
-
 
 // convert time unix
 
