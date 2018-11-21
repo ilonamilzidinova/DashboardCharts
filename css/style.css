@@ -10,11 +10,13 @@
 .registration-form {
     margin: 10% auto 0;
     max-width: 50rem;
-    display: none;
 }
 
 /*page Companies*/
 
+.companies {
+    display: none;
+}
 .companies .card {
     height: 35vh;
     margin: 3vh 0;

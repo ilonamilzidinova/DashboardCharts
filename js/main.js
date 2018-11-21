@@ -20,6 +20,8 @@ $('#registration-form').on('submit', function (e) {
     $.post('http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration', form.serialize(), function( data ) {
         console.log(data.status);
         if (data.status === 'OK') {
+            $('.container.registration').hide();
+            $('.container.companies').show();
             getDataCompains();
         } else {
             alert('Attention!'+ ' ' + data.message);
@@ -129,5 +131,3 @@ function getDataCompains() {
         $('.card .total').html(total);
     });
 }
-
-getDataCompains();
