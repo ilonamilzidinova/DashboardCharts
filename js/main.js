@@ -33,11 +33,11 @@ $('#registration-form').on('submit', function (e) {
 // convert time unix
 
 function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var year = a.getFullYear();
-    var month = a.getMonth();
-    var date = a.getDate();
-    var time = date + '.' + month + '.' + year ;
+    let a = new Date(UNIX_timestamp * 1000);
+    let year = a.getFullYear();
+    let month = a.getMonth();
+    let date = a.getDate();
+    let time = date + '.' + month + '.' + year ;
     return time;
 }
 
@@ -49,7 +49,7 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
 
     // Create the data table.
-    var data = new google.visualization.DataTable();
+    let data = new google.visualization.DataTable();
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
     data.addRows([
@@ -61,12 +61,12 @@ function drawChart() {
     ]);
 
     // Set chart options
-    var options = {'title':'How Much Pizza I Ate Last Night',
+    let options = {'title':'How Much Pizza I Ate Last Night',
         'width':400,
         'height':300};
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart-companies-by-location'));
+    let chart = new google.visualization.PieChart(document.getElementById('chart-companies-by-location'));
     chart.draw(data, options);
     ///////
 
