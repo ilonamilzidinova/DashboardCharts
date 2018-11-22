@@ -76,7 +76,8 @@
     height: 20vh;
 }
 
-.card-chart-company-partners {
-    display:none;
+.card.card-chart-company-partners {
+    display: none;
+    height: 45vh;
 }
 

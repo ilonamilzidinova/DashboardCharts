@@ -96,6 +96,7 @@ function drawChart() {
 function generateColumnChart(data) {
     let options = {
         legend: { position: 'none' },
+        vAxis: { minValue: 0 },
     };
     let chart = new google.visualization.ColumnChart(document.getElementById('columnCharts'));
     chart.draw(google.visualization.arrayToDataTable(data), options);
