@@ -39,7 +39,7 @@ $('#registration-form').validate({
             if (data.status === 'OK') {
                 $('.container.registration').hide();
                 $('.container.companies').show();
-                getDataCompains();
+                getDataCompanies();
             } else {
                 alert('Attention!'+ ' ' + data.message);
             }
@@ -49,64 +49,23 @@ $('#registration-form').validate({
     }
 });
 
-// convert time unix
-
-function timeConverter(UNIX_timestamp){
-    let a = new Date(UNIX_timestamp * 1000);
-    let year = a.getFullYear();
-    let month = a.getMonth();
-    let date = a.getDate();
-    let time = date + '.' + month + '.' + year ;
-    return time;
-}
-
-// chart from google
-
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-    // Create the data table.
-    let data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-        ['Mushrooms', 3],
-        ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
-    ]);
-
-    // Set chart options
-    let options = {'title':'How Much Pizza I Ate Last Night',
-        'width':400,
-        'height':300};
-
-    // Instantiate and draw our chart, passing in some options.
-    let chart = new google.visualization.PieChart(document.getElementById('chart-companies-by-location'));
-    chart.draw(data, options);
-    ///////
-
-}
-
-// end chart from google
-
 function generateColumnChart(data) {
-    let options = {
-        legend: { position: 'none' },
-        vAxis: { minValue: 0 },
-    };
-    let chart = new google.visualization.ColumnChart(document.getElementById('columnCharts'));
-    chart.draw(google.visualization.arrayToDataTable(data), options);
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(function () {
+        let options = {
+            legend: { position: 'none' },
+            vAxis: { minValue: 0 },
+        };
+        let chart = new google.visualization.ColumnChart(document.getElementById('columnCharts'));
+        chart.draw(google.visualization.arrayToDataTable(data), options);
+    });
 }
 
 function removeSpinner(selector) {
     $(selector).find('.spinner').remove();
 }
 
-function getDataCompains() {
+function getDataCompanies() {
 
     $.get('http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList', function(data) {
         let total = 0;
@@ -120,9 +79,6 @@ function getDataCompains() {
             list.append('<li class="list-group-item">' + el.name + '</li>');
 
             total++;
-            el.partners.forEach(function () {
-                total++;
-            });
         });
 
         list.on('click', 'li', function () {
