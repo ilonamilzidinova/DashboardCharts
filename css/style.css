@@ -69,6 +69,10 @@
     overflow-y: auto;
 }
 
+.list-group li {
+    cursor: pointer;
+}
+
 /*card Companies by Location*/
 
 .card-list-of-companies {

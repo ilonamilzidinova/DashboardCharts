@@ -114,7 +114,8 @@ function getDataCompains() {
         // List of Companies
         removeSpinner('.card-list-of-companies');
         let list = $('.card-list-of-companies .card-body')
-            .append('<ul class="list-group"></ul>');
+            .append('<ul class="list-group"></ul>')
+            .find('ul');
         data.list.forEach(function (el) {
             list.append('<li class="list-group-item">' + el.name + '</li>');
 
